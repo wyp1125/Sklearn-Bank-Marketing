@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.naive_bayes import GaussianNB
@@ -57,6 +58,18 @@ var2wgt=pd.DataFrame(list(zip(list(df1),weight)),columns=['variable','weight'])
 var2wgt_sorted=var2wgt.reindex(var2wgt.weight.abs().sort_values(ascending=False).index)
 print("Top 10 weighted variables:")
 print(var2wgt_sorted[0:10])
+
+var_names=list(var2wgt_sorted['variable'][0:10])
+var_imp=list(var2wgt_sorted['weight'][0:10].abs())
+y_pos = np.arange(len(var_names),0,-1)
+fig = plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.barh(y_pos, var_imp, align='center', alpha=0.5)
+plt.yticks(y_pos, var_names)
+plt.xlabel('Weight')
+plt.title('Linear SVM')
+plt.ylim(0,11)
+
 clf=classifiers[4]
 model=clf.fit(x_trn_n,y_trn)
 y_pred=model.predict(x_tst_n)
@@ -71,9 +84,21 @@ for key in sorted(var2imp, key=lambda k:abs(var2imp[k]),reverse=True):
 print("Top 10 important variables:")
 print(var2imp_sorted[0:10])
 
+var_names=list(var2imp_sorted['variable'][0:10])
+var_imp=list(var2imp_sorted['weight'][0:10])
+y_pos = np.arange(len(var_names),0,-1)
+plt.subplot(1, 2, 2)
+plt.barh(y_pos, var_imp, align='center', alpha=0.5)
+plt.yticks(y_pos, var_names)
+plt.xlabel('Weight')
+plt.title('Random Forest')
+plt.ylim(0,11)
+plt.tight_layout()
+fig.savefig('plot.png',dpi=400)
+'''
 print("Comparing different models:")
 for name, clf in zip(clsr_names, classifiers):
     model=clf.fit(x_trn_n,y_trn)
     y_pred=model.predict(x_tst_n)
     print(name+" Accuracy: {0:.3f}%".format(float((y_pred==y_tst).sum())/float(len(y_tst))))
-
+'''
