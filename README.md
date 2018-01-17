@@ -11,7 +11,7 @@ Source code
 
   Written in Python with scikit-learn and pandas libraries.
 
-  Data are imported as pandas dataframe, filtered (deleting records with missing data), encoded on categorical variables using onehot scheme, normalized using min-max scaler, and divided into training and testing datasets. 
+  Data are imported as pandas dataframe, filtered by intact records, encoded on categorical variables using onehot scheme, normalized using min-max scaler, and divided into training and testing datasets. 
   
   For linear SVM and Random Forest models, importance of variables are sorted and top 10 are visualized using bar plots.
 
