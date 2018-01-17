@@ -95,10 +95,8 @@ plt.title('Random Forest')
 plt.ylim(0,11)
 plt.tight_layout()
 fig.savefig('plot.png',dpi=400)
-'''
 print("Comparing different models:")
 for name, clf in zip(clsr_names, classifiers):
     model=clf.fit(x_trn_n,y_trn)
     y_pred=model.predict(x_tst_n)
     print(name+" Accuracy: {0:.3f}%".format(float((y_pred==y_tst).sum())/float(len(y_tst))))
-'''
