@@ -7,7 +7,7 @@ Dataset: https://archive.ics.uci.edu/ml/datasets/bank+marketing.
 
   The classification goal is to predict if the client will subscribe (yes/no) a term deposit (variable y).
 
-Source code
+Source code: multi-classifier.py
 
   Written in Python with scikit-learn and pandas libraries.
 
